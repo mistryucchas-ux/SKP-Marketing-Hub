@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SK+P Marketing Hub – Where Creativity Meets Strategy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════
+       RESET & VARIABLES
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:        #c9a84c;
+      --gold-light:  #e8c96a;
+      --gold-hover:  #b8933a;
+      --gold-faint:  rgba(201,168,76,0.12);
+      --gold-border: rgba(201,168,76,0.3);
+      --dark:        #0d2b2b;
+      --dark-mid:    #0f3535;
+      --darker:      #071818;
+      --dark-card:   rgba(255,255,255,0.04);
+      --white:       #ffffff;
+      --text-muted:  rgba(255,255,255,0.55);
+      --text-dim:    rgba(255,255,255,0.35);
+      --border-light: rgba(255,255,255,0.1);
+      --radius-sm:   8px;
+      --radius-md:   12px;
+      --radius-lg:   16px;
+      --radius-xl:   20px;
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(201,168,76,0.14);
+      --transition:  all 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ═══════════════════════════════════════
+       UTILITY
+    ═══════════════════════════════════════ */
+    .gold { color: var(--gold); }
+
+    .section {
+      padding: 5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .sec-tag {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+      color: #111;
+    }
+
+    .sec-sub {
+      font-size: 15px;
+      color: #666;
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════ */
+    @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes barGrow  { from{width:0} to{width:var(--w)} }
+
+    .fade-up { animation: fadeUp 0.7s ease both; }
+    .fade-up-2 { animation: fadeUp 0.7s 0.15s ease both; }
+    .fade-up-3 { animation: fadeUp 0.7s 0.3s ease both; }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: var(--dark);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 0.5px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--gold-faint);
+      border: 1.5px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.3px;
+    }
+
+    .nav-logo-sub {
+      font-size: 9.5px;
+      color: var(--text-dim);
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 22px;
+      border-radius: 100px;
+      border: 1.5px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero-wrap {
+      background: linear-gradient(135deg, #0d2b2b 0%, #0f3838 50%, #0a2020 100%);
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-faint);
+      border: 0.5px solid var(--gold-border);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: blink 2s infinite;
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 15.5px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-gold {
+      padding: 13px 30px;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-gold:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+    .btn-outline-white {
+      padding: 13px 30px;
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+
+    .btn-outline-white:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: #fff;
+    }
+
+    /* Hero card */
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 0.5px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .hc-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .hc-stat { text-align: center; }
+
+    .hc-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .hc-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    .hc-divider { width: 0.5px; height: 40px; background: var(--border-light); }
+
+    .plat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+
+    .plat-row { display: flex; gap: 7px; flex-wrap: wrap; }
+
+    .plat-badge {
+      padding: 4px 13px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--gold-faint);
+      color: var(--gold);
+      border: 0.5px solid rgba(201,168,76,0.25);
+    }
+
+    .metric-row { margin-top: 1.4rem; }
+
+    .metric-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .metric-head span:last-child { color: var(--gold); font-weight: 600; }
+
+    .bar-bg {
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      height: 5px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      animation: barGrow 1.4s ease both;
+    }
+
+    /* ═══════════════════════════════════════
+       STATS ROW
+    ═══════════════════════════════════════ */
+    .stats-row {
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 0.5px solid rgba(201,168,76,0.15);
+      border-bottom: 0.5px solid rgba(201,168,76,0.15);
+    }
+
+    .stat-item {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 0.5px solid rgba(201,168,76,0.1);
+      transition: background 0.2s;
+    }
+
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(201,168,76,0.04); }
+
+    .stat-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .stat-l { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ═══════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .svc-card {
+      border: 0.5px solid #e4e4e4;
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      background: #fff;
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .svc-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .svc-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      font-size: 22px;
+    }
+
+    .svc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    .svc-desc { font-size: 13px; color: #666; line-height: 1.65; }
+
+    .svc-arrow {
+      font-size: 12px;
+      color: var(--gold);
+      margin-top: 1rem;
+      font-weight: 600;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .svc-card:hover .svc-arrow { transform: translateX(4px); }
+
+    /* ═══════════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════════ */
+    .process-bg {
+      background: var(--dark);
+      padding: 5rem 0;
+    }
+
+    .process-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 1.4rem;
+      left: 2rem;
+      right: 2rem;
+      height: 0.5px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+    }
+
+    .step { position: relative; }
+
+    .step-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--dark);
+      outline: 1px solid var(--gold-border);
+      margin-bottom: 1.2rem;
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: rgba(201,168,76,0.18);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════ */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 3rem;
+    }
+
+    .testi-card {
+      border: 0.5px solid #e8e8e8;
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      background: #fff;
+      transition: var(--transition);
+    }
+
+    .testi-card:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+
+    .testi-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #888;
+      font-weight: 500;
+      background: #f5f5f5;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+
+    .testi-stars { color: var(--gold); font-size: 14px; letter-spacing: 1.5px; margin-bottom: 10px; }
+
+    .testi-text {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 1.3rem;
+    }
+
+    .testi-author { display: flex; align-items: center; gap: 11px; }
+
+    .t-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .t-name { font-size: 13px; font-weight: 600; color: #111; }
+    .t-role { font-size: 12px; color: #999; }
+
+    /* ═══════════════════════════════════════
+       REVIEWS
+    ═══════════════════════════════════════ */
+    .reviews-bg { background: #f8f6f2; padding: 5rem 0; }
+
+    .reviews-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    .reviews-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+
+    .review-cards { display: flex; flex-direction: column; gap: 14px; }
+
+    .review-card {
+      background: #fff;
+      border: 0.5px solid #e5e5e5;
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.6rem;
+      transition: var(--transition);
+    }
+
+    .review-card:hover { box-shadow: var(--shadow-card); }
+
+    .rc-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 10px;
+    }
+
+    .rc-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .rc-name { font-size: 13px; font-weight: 600; color: #111; }
+    .rc-role { font-size: 12px; color: #999; }
+    .rc-stars { color: var(--gold); font-size: 13px; letter-spacing: 1.5px; margin-bottom: 8px; }
+
+    .rc-text { font-size: 13px; color: #555; line-height: 1.7; font-style: italic; }
+
+    .rc-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #3B6D11;
+      font-weight: 600;
+      background: #EAF3DE;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-top: 10px;
+    }
+
+    /* Review form */
+    .review-form-card {
+      background: #fff;
+      border: 0.5px solid #e0e0e0;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .rf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.4rem;
+    }
+
+    .rf-sub { font-size: 13px; color: #888; margin-bottom: 1.4rem; line-height: 1.6; }
+
+    .rf-row { margin-bottom: 1rem; }
+
+    .rf-label {
+      font-size: 12px;
+      color: #555;
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+      letter-spacing: 0.2px;
+    }
+
+    .rf-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: #fafafa;
+      border: 0.5px solid #ddd;
+      border-radius: 9px;
+      color: #1a1a1a;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .rf-input:focus { border-color: var(--gold); background: #fff; }
+    .rf-input::placeholder { color: #bbb; }
+
+    .rf-star-row { display: flex; gap: 8px; }
+
+    .rf-star-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      border: 0.5px solid #e0e0e0;
+      background: #fafafa;
+      font-size: 18px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .rf-star-btn:hover,
+    .rf-star-btn.active { background: #FFF3CD; border-color: var(--gold); }
+
+    .rf-note {
+      font-size: 12px;
+      color: #999;
+      margin-top: 1rem;
+      padding: 10px 14px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+      line-height: 1.6;
+    }
+
+    .rf-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 1rem;
+      transition: var(--transition);
+    }
+
+    .rf-btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin-top: 1rem;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .form-success.review-success {
+      background: #EAF3DE;
+      color: #3B6D11;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    .contact-bg { background: var(--dark); padding: 5rem 0; }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-left .sec-title { color: #fff; }
+    .contact-lead { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 2rem; }
+
+    .cii-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.1rem;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 0.5px solid rgba(201,168,76,0.18);
+      background: rgba(255,255,255,0.03);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .cii-link:hover {
+      background: rgba(201,168,76,0.07);
+      border-color: rgba(201,168,76,0.45);
+      transform: translateX(3px);
+    }
+
+    .cii-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: var(--gold-faint);
+      border: 0.5px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      flex-shrink: 0;
+    }
+
+    .cii-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+    .cii-value { font-size: 14px; color: #fff; font-weight: 500; margin-top: 2px; }
+    .cii-arrow { margin-left: auto; font-size: 13px; color: rgba(201,168,76,0.45); }
+
+    /* Contact form card */
+    .contact-form-card {
+      background: var(--dark-card);
+      border: 0.5px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+    }
+
+    .cf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1.3rem;
+    }
+
+    .cf-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cf-row { margin-bottom: 1rem; }
+
+    .cf-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 5px;
+      display: block;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+
+    .cf-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid rgba(255,255,255,0.12);
+      border-radius: 9px;
+      color: #fff;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .cf-input:focus { border-color: rgba(201,168,76,0.5); }
+    .cf-input::placeholder { color: rgba(255,255,255,0.2); }
+
+    .cf-select option { background: #0d2b2b; color: #fff; }
+
+    .cf-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .cf-btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+    .form-success.contact-success {
+      background: rgba(59,109,17,0.18);
+      color: #9fe08a;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background: var(--darker);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 0.5px solid rgba(201,168,76,0.1);
+    }
+
+    .f-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .f-brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: var(--gold-faint);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 8.5px;
+      color: var(--gold);
+      letter-spacing: -0.3px;
+    }
+
+    .f-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .f-copy { font-size: 12px; color: var(--text-dim); }
+
+    .f-socials { display: flex; gap: 9px; }
+
+    .f-soc {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .f-soc:hover {
+      background: var(--gold-faint);
+      border-color: var(--gold-border);
+      color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+
+      .nav-mobile-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--dark);
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+        border-bottom: 0.5px solid var(--gold-border);
+        z-index: 999;
+      }
+
+      .nav-mobile-open .nav-cta {
+        display: block;
+        margin: 0 2rem 1.5rem;
+        text-align: center;
+        position: fixed;
+        top: 200px;
+        left: 0;
+        right: 0;
+        z-index: 999;
+      }
+
+      .hero { grid-template-columns: 1fr; padding: 3.5rem 1.5rem 3rem; gap: 2.5rem; }
+      .hero h1 { font-size: 2.4rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .process-grid::before { display: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .reviews-layout { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .section { padding: 3.5rem 1.5rem; }
+      .process-inner { padding: 0 1.5rem; }
+      .reviews-inner { padding: 0 1.5rem; }
+      .contact-inner { padding: 0 1.5rem; }
+    }
+
+    @media (max-width: 540px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .sec-title { font-size: 1.8rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .cf-grid-2 { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">SK+P</div>
+      <div>
+        <div class="nav-logo-text">SK+P Marketing Hub</div>
+        <span class="nav-logo-sub">Where Creativity Meets Strategy</span>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#testimonials">Results</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="https://wa.me/8801932415559" target="_blank" rel="noopener">
+      <button class="nav-cta">Free Consultation ↗</button>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <div class="hero-wrap">
+    <div class="hero">
+
+      <div>
+        <div class="hero-eyebrow fade-up">
+          <div class="eyebrow-dot"></div>
+          Trusted by 2.3K+ Followers &amp; Growing
+        </div>
+        <h1 class="fade-up-2">
+          Unlock Your Brand's<br>
+          <span class="gold">Full Potential</span><br>
+          Online
+        </h1>
+        <p class="hero-sub fade-up-3">
+          SK+P Marketing Hub delivers data-driven social media marketing, creative content, and high-ROI ad campaigns that turn your audience into loyal customers.
+        </p>
+        <div class="hero-btns fade-up-3">
+          <a href="https://wa.me/8801932415559" target="_blank" rel="noopener">
+            <button class="btn-gold">Get Started Today</button>
+          </a>
+          <a href="https://www.facebook.com/SKPMarketingHub" target="_blank" rel="noopener">
+            <button class="btn-outline-white">See Our Work →</button>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card fade-up-2">
+        <div class="hc-top">
+          <div class="hc-stat">
+            <div class="hc-num">2.3K+</div>
+            <div class="hc-lbl">Social Followers</div>
+          </div>
+          <div class="hc-divider"></div>
+          <div class="hc-stat">
+            <div class="hc-num">8×</div>
+            <div class="hc-lbl">Avg. ROI</div>
+          </div>
+          <div class="hc-divider"></div>
+          <div class="hc-stat">
+            <div class="hc-num">50+</div>
+            <div class="hc-lbl">Clients Served</div>
+          </div>
+        </div>
+        <div class="plat-label">Platforms We Master</div>
+        <div class="plat-row">
+          <span class="plat-badge">Facebook</span>
+          <span class="plat-badge">Instagram</span>
+          <span class="plat-badge">Twitter / X</span>
+          <span class="plat-badge">LinkedIn</span>
+        </div>
+        <div class="metric-row">
+          <div class="metric-head"><span>Avg. Follower Growth</span><span>+340%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="--w:85%; width:85%;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-head"><span>Avg. Engagement Rate</span><span>+210%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="--w:65%; width:65%;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-head"><span>Ad Campaign ROI</span><span>8.2×</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="--w:92%; width:92%;"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       STATS ROW
+  ═══════════════════════════════════════ -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-n">50+</div>
+      <div class="stat-l">Happy Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">340%</div>
+      <div class="stat-l">Avg. Follower Growth</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">8.2×</div>
+      <div class="stat-l">Average Ad ROI</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">4 Yrs</div>
+      <div class="stat-l">Industry Experience</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════ -->
+  <div class="section" id="services">
+    <div class="sec-tag">Our Services</div>
+    <div class="sec-title">Everything Your Brand Needs<br>to Dominate Social Media</div>
+    <div class="sec-sub">From strategy to execution, we handle every aspect of your digital presence so you can focus on running your business.</div>
+
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#FAECE7;">📣</div>
+        <div class="svc-title">Social Media Management</div>
+        <div class="svc-desc">Full management of your Facebook, Instagram, LinkedIn &amp; Twitter — posting, engagement, and community growth.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#E6F1FB;">🎯</div>
+        <div class="svc-title">Paid Ad Campaigns</div>
+        <div class="svc-desc">ROI-focused Facebook Ads, Instagram Ads, and Google Ads that reach your ideal customers and convert them.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#E1F5EE;">🎬</div>
+        <div class="svc-title">Content Creation</div>
+        <div class="svc-desc">Professional videos, Reels, graphics, and copywriting crafted to stop the scroll and drive real engagement.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#EEEDFE;">📈</div>
+        <div class="svc-title">Growth Strategy</div>
+        <div class="svc-desc">Custom data-driven marketing strategies designed to scale your brand fast and sustainably.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#FAEEDA;">🤝</div>
+        <div class="svc-title">Influencer Marketing</div>
+        <div class="svc-desc">We connect your brand with the right influencers to amplify awareness and build authentic trust.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#EAF3DE;">📊</div>
+        <div class="svc-title">Analytics &amp; Reporting</div>
+        <div class="svc-desc">Monthly detailed performance reports with clear metrics — no guesswork, just transparent results.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#E0F0FF;">🌐</div>
+        <div class="svc-title">Website Design &amp; Development</div>
+        <div class="svc-desc">Beautiful, fast, mobile-friendly websites and landing pages that convert visitors into paying customers.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#FFF3E0;">🔍</div>
+        <div class="svc-title">SEO Optimization</div>
+        <div class="svc-desc">Rank higher on Google with on-page SEO, technical audits, keyword research, and link-building strategies.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon" style="background:#FCE4EC;">📧</div>
+        <div class="svc-title">Email Marketing</div>
+        <div class="svc-desc">High-converting email campaigns, automated sequences, and newsletters that turn subscribers into buyers.</div>
+        <span class="svc-arrow">Learn more →</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════ -->
+  <div class="process-bg" id="process">
+    <div class="process-inner">
+      <div class="sec-tag" style="color:var(--gold);">How It Works</div>
+      <div class="sec-title" style="color:#fff;">Our Proven 4-Step<br>Growth Process</div>
+      <div class="process-grid">
+
+        <div class="step">
+          <div class="step-dot"></div>
+          <div class="step-num">01</div>
+          <div class="step-title">Discovery Call</div>
+          <div class="step-desc">We learn about your business, goals, and target audience in a free, no-commitment consultation session.</div>
+        </div>
+
+        <div class="step">
+          <div class="step-dot"></div>
+          <div class="step-num">02</div>
+          <div class="step-title">Custom Strategy</div>
+          <div class="step-desc">We build a tailored marketing plan aligned with your budget, timeline, and specific growth objectives.</div>
+        </div>
+
+        <div class="step">
+          <div class="step-dot"></div>
+          <div class="step-num">03</div>
+          <div class="step-title">Execution</div>
+          <div class="step-desc">Our team creates content, launches campaigns, and continuously optimizes for better performance.</div>
+        </div>
+
+        <div class="step">
+          <div class="step-dot"></div>
+          <div class="step-num">04</div>
+          <div class="step-title">Report &amp; Scale</div>
+          <div class="step-desc">We analyze results, share transparent monthly reports, and double down on what delivers the best returns.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       TESTIMONIALS / RESULTS
+  ═══════════════════════════════════════ -->
+  <div class="section" id="testimonials">
+    <div class="sec-tag">Client Results</div>
+    <div class="sec-title">What Our Global Clients Say</div>
+    <div class="sec-sub">Real results from real businesses around the world — our clients' success is our greatest achievement.</div>
+
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="testi-flag">🇺🇸 United States</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"SK+P completely transformed our Instagram. In 90 days, followers jumped from 1,200 to 18,000 and online revenue doubled. Absolutely extraordinary."</div>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:#FAECE7;color:#993C1D;">JM</div>
+          <div>
+            <div class="t-name">James Mitchell</div>
+            <div class="t-role">E-Commerce Brand Owner, New York</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-flag">🇬🇧 United Kingdom</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Brilliant team. Our Facebook ad campaigns delivered a 9× return on investment. Transparent reporting and a strategy perfectly tailored to our UK market."</div>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:#E6F1FB;color:#185FA5;">OW</div>
+          <div>
+            <div class="t-name">Oliver Watson</div>
+            <div class="t-role">Digital Retail Founder, London</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-flag">🇦🇺 Australia</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"We hired SK+P for our product launch and the results were extraordinary. The content strategy was creative, targeted, and our launch day sold out completely."</div>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:#E1F5EE;color:#0F6E56;">LC</div>
+          <div>
+            <div class="t-name">Liam Carter</div>
+            <div class="t-role">Startup Founder, Sydney</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-flag">🇸🇦 Saudi Arabia</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"SK+P built our entire social media from scratch. In 4 months we grew to 25,000 followers. Their understanding of the Middle East market is exceptional."</div>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:#EEEDFE;color:#533AB7;">KA</div>
+          <div>
+            <div class="t-name">Khalid Al-Rashidi</div>
+            <div class="t-role">Real Estate Director, Riyadh</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-flag">🇨🇦 Canada</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Exceptional service from start to finish. LinkedIn engagement grew 420% and we're generating consistent B2B leads. The ROI has been phenomenal."</div>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:#FAEEDA;color:#854F0B;">ST</div>
+          <div>
+            <div class="t-name">Sophie Thompson</div>
+            <div class="t-role">Marketing Director, Toronto</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-flag">🇦🇪 UAE</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"We partnered with SK+P for our Dubai expansion and results exceeded expectations. Their influencer network drove a 7× increase in foot traffic to our stores."</div>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:#EAF3DE;color:#3B6D11;">NA</div>
+          <div>
+            <div class="t-name">Nora Al-Farsi</div>
+            <div class="t-role">Retail Chain CEO, Dubai</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       REVIEWS
+  ═══════════════════════════════════════ -->
+  <div class="reviews-bg" id="reviews">
+    <div class="reviews-inner">
+      <div class="sec-tag">Client Reviews</div>
+      <div class="sec-title">Verified Client Feedback</div>
+      <p class="sec-sub">Real reviews from verified clients. Only approved reviews are published on this website.</p>
+
+      <div class="reviews-layout">
+
+        <!-- Left: approved reviews (loaded dynamically from Firestore) -->
+        <div id="approvedReviews" class="review-cards">
+          <!-- Reviews load here from Firestore -->
+          <div class="rc-loading" style="font-size:13px;color:#aaa;padding:1rem 0;">Loading reviews...</div>
+        </div>
+
+        <!-- Right: review submission form -->
+        <div class="review-form-card">
+          <div class="rf-title">Leave a Review</div>
+          <div class="rf-sub">Worked with us? Share your experience below.</div>
+
+          <form id="reviewForm">
+
+            <div class="rf-row">
+              <label class="rf-label" for="r-name">Your Full Name *</label>
+              <input class="rf-input" type="text" id="r-name" name="name" placeholder="e.g. James Mitchell" required />
+            </div>
+
+            <div class="rf-row">
+              <label class="rf-label" for="r-role">Your Business / Role *</label>
+              <input class="rf-input" type="text" id="r-role" name="business_role" placeholder="e.g. E-Commerce Founder, Dubai" required />
+            </div>
+
+            <div class="rf-row">
+              <label class="rf-label">Your Rating *</label>
+              <div class="rf-star-row" id="starRow">
+                <button type="button" class="rf-star-btn" data-val="1">⭐</button>
+                <button type="button" class="rf-star-btn" data-val="2">⭐</button>
+                <button type="button" class="rf-star-btn" data-val="3">⭐</button>
+                <button type="button" class="rf-star-btn" data-val="4">⭐</button>
+                <button type="button" class="rf-star-btn" data-val="5">⭐</button>
+              </div>
+              <input type="hidden" name="rating" id="ratingInput" value="" />
+            </div>
+
+            <div class="rf-row">
+              <label class="rf-label" for="r-review">Your Review *</label>
+              <textarea class="rf-input" id="r-review" name="review" rows="4" placeholder="Tell us about your experience with SK+P Marketing Hub..." required></textarea>
+            </div>
+
+            <div class="rf-note">
+              ℹ️ Only approved reviews will be published on this website. We review all submissions before they go live.
+            </div>
+
+            <button class="rf-btn" type="submit">Submit Review ↗</button>
+          </form>
+
+          <div class="form-success review-success" id="reviewSuccess">
+            🎉 Thank you for your review! It has been submitted and is now pending approval. We truly appreciate your feedback.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════ -->
+  <div class="contact-bg" id="contact">
+    <div class="contact-inner">
+
+      <!-- Left: contact info -->
+      <div class="contact-left">
+        <div class="sec-tag" style="color:var(--gold);">Get In Touch</div>
+        <div class="sec-title">Ready to Grow<br>Your Brand?</div>
+        <p class="contact-lead">Click any option below to connect with us instantly. We respond within 24 hours.</p>
+
+        <a class="cii-link" href="https://wa.me/8801932415559" target="_blank" rel="noopener">
+          <div class="cii-icon">📞</div>
+          <div>
+            <div class="cii-label">Phone / WhatsApp</div>
+            <div class="cii-value">01932-415559</div>
+          </div>
+          <div class="cii-arrow">↗</div>
+        </a>
+
+        <a class="cii-link" href="mailto:kapildebmondal.work@gmail.com" target="_blank" rel="noopener">
+          <div class="cii-icon">✉️</div>
+          <div>
+            <div class="cii-label">Email</div>
+            <div class="cii-value">kapildebmondal.work@gmail.com</div>
+          </div>
+          <div class="cii-arrow">↗</div>
+        </a>
+
+        <a class="cii-link" href="https://www.facebook.com/SKPMarketingHub" target="_blank" rel="noopener">
+          <div class="cii-icon">📘</div>
+          <div>
+            <div class="cii-label">Facebook Page</div>
+            <div class="cii-value">facebook.com/SKPMarketingHub</div>
+          </div>
+          <div class="cii-arrow">↗</div>
+        </a>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="contact-form-card">
+        <div class="cf-title">Send Us a Message</div>
+
+        <form id="contactForm" action="https://formspree.io/f/mwvrwrjb" method="POST">
+          <input type="hidden" name="_subject" value="New Contact Message from SK+P Website" />
+
+          <div class="cf-grid-2">
+            <div class="cf-row">
+              <label class="cf-label">First Name *</label>
+              <input class="cf-input" type="text" name="first_name" placeholder="John" required />
+            </div>
+            <div class="cf-row">
+              <label class="cf-label">Last Name *</label>
+              <input class="cf-input" type="text" name="last_name" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="cf-row">
+            <label class="cf-label">Email Address *</label>
+            <input class="cf-input" type="email" name="email" placeholder="john@company.com" required />
+          </div>
+
+          <div class="cf-row">
+            <label class="cf-label">Phone / WhatsApp</label>
+            <input class="cf-input" type="tel" name="phone" placeholder="+1 234 567 8900" />
+          </div>
+
+          <div class="cf-row">
+            <label class="cf-label">Business Type *</label>
+            <select class="cf-input cf-select" name="business_type" required>
+              <option value="">Select your business type...</option>
+              <option>E-Commerce</option>
+              <option>Retail / Physical Store</option>
+              <option>Restaurant / Food</option>
+              <option>Real Estate</option>
+              <option>Health &amp; Wellness</option>
+              <option>Education / Coaching</option>
+              <option>Tech / SaaS</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="cf-row">
+            <label class="cf-label">Main Marketing Challenge</label>
+            <select class="cf-input cf-select" name="main_challenge">
+              <option value="">Select your main challenge...</option>
+              <option>Low social media followers</option>
+              <option>Poor ad performance / ROI</option>
+              <option>Not enough leads or sales</option>
+              <option>No content strategy</option>
+              <option>Low website traffic / SEO</option>
+              <option>Starting from scratch</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="cf-row">
+            <label class="cf-label">Monthly Budget</label>
+            <select class="cf-input cf-select" name="budget">
+              <option value="">Select your budget range...</option>
+              <option>Under $200 / month</option>
+              <option>$200 – $500 / month</option>
+              <option>$500 – $1,000 / month</option>
+              <option>$1,000 – $2,500 / month</option>
+              <option>$2,500+ / month</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="cf-row">
+            <label class="cf-label">Message</label>
+            <textarea class="cf-input" name="message" rows="3" placeholder="Tell us about your business and goals..."></textarea>
+          </div>
+
+          <button class="cf-btn" type="submit">Send Message ↗</button>
+        </form>
+
+        <div class="form-success contact-success" id="contactSuccess">
+          ✅ Message sent successfully! We'll get back to you within 24 hours.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="f-brand">
+      <div class="f-brand-mark">SK+P</div>
+      <div class="f-name">SK+P Marketing Hub</div>
+    </div>
+
+    <div class="f-copy">© 2025 SK+P Marketing Hub. All rights reserved. · Your success is our mission.</div>
+
+    <div class="f-socials">
+      <a class="f-soc" href="https://www.facebook.com/SKPMarketingHub" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+      <a class="f-soc" href="https://www.instagram.com/SKPMarketingHub" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+      <a class="f-soc" href="https://twitter.com/SKPMarketingHub" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      <a class="f-soc" href="https://wa.me/8801932415559" target="_blank" rel="noopener" aria-label="WhatsApp">W</a>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════ -->
+  <script>
+    /* ── Mobile nav toggle ── */
+    const navbar    = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+
+    navToggle.addEventListener('click', function () {
+      navbar.classList.toggle('nav-mobile-open');
+    });
+
+    /* Close mobile nav when a link is clicked */
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navbar.classList.remove('nav-mobile-open');
+      });
+    });
+
+    /* ── Star rating (review form) ── */
+    const starBtns    = document.querySelectorAll('.rf-star-btn');
+    const ratingInput = document.getElementById('ratingInput');
+
+    starBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const val = parseInt(this.dataset.val);
+        ratingInput.value = val + ' out of 5 stars';
+        starBtns.forEach(function (b, i) {
+          b.classList.toggle('active', i < val);
+        });
+      });
+    });
+
+    /* ── Contact form – AJAX submit via Formspree (unchanged) ── */
+    const contactForm    = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccess');
+
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          contactSuccess.style.display = 'block';
+        } else {
+          contactForm.submit();
+        }
+      } catch (err) {
+        contactForm.submit();
+      }
+    });
+
+    /* ── Scroll reveal (lightweight IntersectionObserver) ── */
+    function initReveal () {
+      const revealEls = document.querySelectorAll(
+        '.svc-card, .testi-card, .review-card, .step, .stat-item'
+      );
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealEls.forEach(function (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+        observer.observe(el);
+      });
+    }
+
+    initReveal();
+  </script>
+
+  <!-- ═══════════════════════════════════════
+       FIREBASE – Reviews (Firestore)
+  ═══════════════════════════════════════ -->
+  <script type="module">
+    import { initializeApp }                        from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAnalytics }                         from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      where,
+      orderBy,
+      getDocs,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+    /* ── Firebase init ── */
+    const firebaseConfig = {
+      apiKey:            "AIzaSyAxQT2sgXUjiqnN71tiOR7ATYbCZNuTmdw",
+      authDomain:        "skp-review-system.firebaseapp.com",
+      projectId:         "skp-review-system",
+      storageBucket:     "skp-review-system.firebasestorage.app",
+      messagingSenderId: "78300142698",
+      appId:             "1:78300142698:web:03e9ded7495082936d3e13",
+      measurementId:     "G-LLETEVNK4X"
+    };
+
+    const app       = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db        = getFirestore(app);
+
+    /* ── Helper: generate initials avatar colours ── */
+    const avatarPalettes = [
+      { bg:'#FAECE7', fg:'#993C1D' },
+      { bg:'#E6F1FB', fg:'#185FA5' },
+      { bg:'#E1F5EE', fg:'#0F6E56' },
+      { bg:'#EEEDFE', fg:'#533AB7' },
+      { bg:'#FAEEDA', fg:'#854F0B' },
+      { bg:'#EAF3DE', fg:'#3B6D11' },
+    ];
+
+    function getInitials (name) {
+      return name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0, 2).join('');
+    }
+
+    function getPalette (name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      return avatarPalettes[Math.abs(hash) % avatarPalettes.length];
+    }
+
+    function starsHTML (rating) {
+      const n = parseInt(rating) || 5;
+      return '★'.repeat(Math.min(n, 5)) + '☆'.repeat(Math.max(0, 5 - n));
+    }
+
+    /* ── Render one review card ── */
+    function renderCard (data) {
+      const initials = getInitials(data.name || '?');
+      const palette  = getPalette(data.name || '');
+      const stars    = starsHTML(data.rating);
+      const card     = document.createElement('div');
+      card.className = 'review-card';
+      card.innerHTML = `
+        <div class="rc-top">
+          <div class="rc-avatar" style="background:${palette.bg};color:${palette.fg};">${initials}</div>
+          <div>
+            <div class="rc-name">${data.name}</div>
+            <div class="rc-role">${data.business_role || ''}</div>
+          </div>
+        </div>
+        <div class="rc-stars">${stars}</div>
+        <div class="rc-text">"${data.review}"</div>
+        <div class="rc-verified">✔ Verified &amp; Approved</div>
+      `;
+      return card;
+    }
+
+    /* ── Load approved reviews from Firestore ── */
+    async function loadApprovedReviews () {
+      const container = document.getElementById('approvedReviews');
+      try {
+        const q = query(
+          collection(db, 'reviews'),
+          where('approved', '==', true),
+          orderBy('createdAt', 'desc')
+        );
+        const snapshot = await getDocs(q);
+        container.innerHTML = '';
+
+        if (snapshot.empty) {
+          container.innerHTML = '<p style="font-size:13px;color:#aaa;padding:0.5rem 0;">No approved reviews yet. Be the first!</p>';
+          return;
+        }
+
+        snapshot.forEach(function (doc) {
+          const card = renderCard(doc.data());
+          /* trigger scroll-reveal on newly created cards */
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(18px)';
+          card.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+          container.appendChild(card);
+          /* small delay so the browser paints before animating */
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }));
+        });
+      } catch (err) {
+        console.error('Error loading reviews:', err);
+        container.innerHTML = '<p style="font-size:13px;color:#aaa;padding:0.5rem 0;">Could not load reviews. Please try again later.</p>';
+      }
+    }
+
+    loadApprovedReviews();
+
+    /* ── Save new review to Firestore ── */
+    const reviewForm    = document.getElementById('reviewForm');
+    const ratingInput   = document.getElementById('ratingInput');
+    const reviewSuccess = document.getElementById('reviewSuccess');
+
+    reviewForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const submitBtn = reviewForm.querySelector('.rf-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      const name         = document.getElementById('r-name').value.trim();
+      const business_role = document.getElementById('r-role').value.trim();
+      const rating       = ratingInput.value || 'Not rated';
+      const review       = document.getElementById('r-review').value.trim();
+
+      try {
+        await addDoc(collection(db, 'reviews'), {
+          name,
+          business_role,
+          rating,
+          review,
+          approved:  false,
+          createdAt: serverTimestamp()
+        });
+
+        reviewForm.style.display = 'none';
+        reviewSuccess.style.display = 'block';
+      } catch (err) {
+        console.error('Error saving review:', err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Review ↗';
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
+
+</body>
+</html>
