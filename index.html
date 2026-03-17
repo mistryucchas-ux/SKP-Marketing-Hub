@@ -1734,7 +1734,7 @@
         const q = query(
           collection(db, 'reviews'),
           where('approved', '==', true),
-          orderBy('createdAt', 'desc')
+          
         );
         const snapshot = await getDocs(q);
         container.innerHTML = '';
